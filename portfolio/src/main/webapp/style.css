@@ -139,6 +139,12 @@ body {
   width: 90%;
   background-color:azure;
   text-align: left;
+  opacity: 0.7; 
+  cursor: pointer;
+}
+
+.message:hover {
+  opacity: 1;
 }
 
 .message span {
