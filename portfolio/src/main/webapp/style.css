@@ -1,9 +1,146 @@
+body{
+  background-color: rgba(187, 209, 250, 0.466);
+  font-family:'Lucida Sans';
+}
+
+table{
+    margin: 5px;
+    
+}
+td{
+    font-size: 15px;
+}
+
+.leftcol{
+    width: 15%;
+}
+
+.midcol{
+    width: 35%;
+    padding-left: 20px;
+}
+
+.rightcol{
+    width: 48%;
+    text-align: center;
+}
+
+#banner{
+    background-image: url("/images/siteimages/cirque-of-the-towers-panoramic.jpg");
+    text-align: center;
+    padding: 60px;
+    width: 100%;
+    background-size:cover;
+    font-weight: bold;
+    color: white;
+    position: relative;
+}
+
+#banner-content {
+  position: absolute;
+  bottom: 0;
+  left: 240px;
+}
+
+#profile-pic{
+    position:absolute;
+     top:10%; 
+     left:3%; 
+}
+
+#side-pic{
+    position:absolute;
+    top:20%;
+    left: 75%;
+}
+
 #content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+  text-align: left;
+  margin-left: 240px;
+  width: 50%;
+}
+#servlet-container {
+  margin-top: 20px;
 }
 
 #greeting-container {
   margin-top: 20px;
+}
+
+/* text issues */
+#text{
+    padding-bottom: 10px;
+    border: thin solid black;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 98%;
+    background-color:azure;
+    text-align: center;
+}
+
+
+/* Gallery code : adapted from
+ https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp */
+
+ * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.galcolumn {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style the images inside the grid */
+.galcolumn img {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.galcolumn img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.galrow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/*footer code */
+#footer-image{
+    background-image: url("/images/siteimages/forrestpano.jpg");
+    text-align: center;
+    padding: 60px;
+    height: 160px;
+}
+
+/* server code */
+#message-list {
+  list-style-type: none;
+}
+
+.message {
+  border: thin solid black;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  width: 90%;
+  background-color:azure;
+  text-align: left;
+}
+
+.message span {
+  flex-grow: 1;
 }

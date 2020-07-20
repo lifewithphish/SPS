@@ -6,13 +6,159 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+  <body onload="loadMessages()">
+    <div id="banner">
+        <h1>Hello World!</h1>
+        <div id="banner-content">Cirque de Towers, Wyoming</div>
+    </div>    
+
+    <div id="profile-pic">
+        <img style="width: 200px;" src="/images/siteimages/climbing.jpg">
     </div>
-  </body>
+
+    <div id="side-pic">
+        <img src="/images/siteimages/truck.jpg" style="width: 250px;">
+    </div>
+
+    <div id="content">
+      <p style="padding: 20px">
+          My name is Meleah, but I go by Mel. I love hiking, climbing, and working 
+          on projects. I am studying Computer Engineering, but find myself just as
+          excited about learning to code! I love being outdoors and exploring the 
+          mountains. Maybe it's a side effect of growing up in the flat state of 
+          Texas, but going to the mountains always brings me so much joy. I plan to
+          attempt the Seven Summits one day. I also enjoy working on old cars and have
+          been fixing up my truck in my free time. 
+      </p>
+    </div>
+    
+<!-- I originally had this as div row/cols but I was struggling to get the 
+    level of customication I was looking for, so I redid it as a table -->
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="rightcol" style="font-size: 20px;">Adventure Map!</td>
+        </tr>
+        <tr>
+            <td class="leftcol">
+                <img src="/images/siteimages/NASAlogo.jpg" style="width: 100%;">
+            </td>
+            <td class="midcol"> While I was in high school, I had the opportunity to 
+                work with NASA at the Johnson Space Center several times. I participated
+                in the High School Aerospace Scholars program, where I studied space 
+                exploration as an additional course.
+                I also participated in the Space Settlment Design Competition, first as 
+                a student and later as a mentor, working to solve problems associated with
+                living and working in space in a think-tank style contest. 
+            </td>
+            <td class="rightcol" rowspan="2" style="border: 2px black solid;"> 
+                <a href="https://www.google.com/maps/d/edit?mid=1GsqOIsGLhp1Qbl8Y-o-A0eI2gwjUcUu1&usp=sharing">
+                    <img alt="Mel's Map" src="/images/siteimages/map.jpg" 
+                    style="width: 100%;">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="leftcol">
+                <img src="/images/siteimages/DRONElogo.jpg" style="width: 100%;">
+            </td>
+            <td class="midcol">I had the unique opportunity to participate in hands on drone integration
+                research while in college. The drones were used to study the 
+                effeciveness of autonomous teammates in squad competitions for identifying 
+                other players and tracking their movements. This hands on research was really 
+                fun for me because I was able to be in the action while collecting data and 
+                interpreting the results.
+            </td>
+        </tr>
+        <!-- this row has an interactive (?) map that should link to google maps, but 
+                it may be privacy locked by the SPS google suite -->
+        <tr>
+            <td class="leftcol">
+                <img src="/images/siteimages/MCMAPlogo.jpg" style="width: 100%;">
+            </td>
+            <td class="midcol"> 
+                I completed a rigorous 3 week course to become a Marine Corps Martial
+                Arts Instructor, and am certified to teach MCMAP, the Marine Corps' 
+                blended self defence and de-escalation focused martial art style.
+                </td>
+            <td class="rightcol" colspan="2" style="vertical-align: top; padding: 10px;">
+                Here is a map of some of the places I've been. I also included two of my 
+                longest road trips. My recent move from Maryland to Illinois was especially fun,
+                since I got to drive through the Appalachian Mountains. 
+                Give it a click! 
+                <p style="vertical-align: bottom;"> My dream trip is to drive the entire 
+                    Pan-American Highway, a 40,000 mile road from Alaska to Argentina. Adventure
+                    is out there!
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="leftcol">
+                <img src="/images/siteimages/PADIlogo.jpg" style="width: 100%;">
+            </td>
+            <td class="midcol"> I have my Advanced Open Water Diver certification through PADI. 
+                I love going on dive trips and exploring everything from coral reefs to
+                old quarries to underwater canyons. My favorite dive was in the kelp forests
+                of La Jolla, California, where I was met by a colony of playful seals!
+            </td>
+            <!-- Step 5 comment handling -->
+            <td class = "rightcol" rowspan= "2" style="vertical-align: top;" >
+                Questions? Comments? Bugs in the code? Drop them below!
+                <form method="POST" action="/new-message">
+                    <input type="text" name="title" />
+                    <br/>
+                    <button>Submit</button>
+                </form>
+                <ul id="message-list"></ul>
+            </td>       
+        </tr>
+        <tr>
+            <td class="leftcol">
+                <img src="/images/siteimages/ULTRAlogo.jpg" style="width: 100%;">
+            </td>
+            <td class="midcol"> In 2019, I completed my second ultramarathon, the 
+                Spartan Ultrabeast. An Ultramarathon
+                is any race longer than the traditional 26.2 miles. This particular
+                race sprawled over 42 miles and took me up nearly two miles of elevation and
+                through more than 60 obstacles. It took over twelve hours to finish. 
+            </td>
+        </tr>
+    </table>
+    <!-- This is the row/col classes that run the gallery-->
+
+    <div class="galrow">
+        <div class="galcolumn">
+            <img src="/images/siteimages/galleryimages/hanging.jpg"
+             alt="Catoctin National Park, Virginia" style="width:100%" 
+             onMouseOver="showText('Hanging out in Catoctin National Park, Virginia')" 
+             onMouseOut="hide();">
+        </div>
+
+        <div class="galcolumn">
+            <img src="/images/siteimages/galleryimages/jellyfish.jpg"
+             alt="Vancouver Aquarium" style="width:100%" 
+             onMouseOver="showText('At the Vancouver Aquarium with the Jellyfish')" 
+             onMouseOut="hide();">
+        </div>
+
+        <div class="galcolumn">
+            <img src="/images/siteimages/galleryimages/spartan.jpg" 
+             alt="Obstacle Race" style="width:100%" 
+             onMouseOver="showText('During my 42 mile obstacle course race')" 
+             onMouseOut="hide();">
+        </div>
+
+        <div class="galcolumn">
+            <img src="/images/siteimages/galleryimages/westvirginia.jpg" 
+            alt="Appalachian Mountains" style="width:100%" 
+            onMouseOver="showText('Somewhere in the Appalachian Mountains')" 
+            onMouseOut="hide();">
+        </div>
+    </div>
+    
+    <div id="text"></div>
+
+    <div id="footer-image"></div>
+   </body>
 </html>

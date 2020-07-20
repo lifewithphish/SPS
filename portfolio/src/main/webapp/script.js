@@ -12,17 +12,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+/*This function adds a caption to the photo when you mouse over it
+* I adapted this function from w3schools: 
+* https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp
+* I referenced their div col/row method for laying out the photos
+* and then added my own JavaScript */
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+function showText(text){
+    document.getElementById("text").innerHTML=text;
 }
+
+function hide(){
+    document.getElementById("text").innerHTML="";
+}
+
+
+/** Fetches tasks from the server and adds them to the DOM. */
+/* repurposed for messages! */
+function loadMessages() {
+  fetch('/list-messages').then(response => response.json()).then((messages) => {
+    const messageListElement = document.getElementById('message-list');
+    messages.forEach((message) => {
+      messageListElement.appendChild(createMessageElement(message));
+    })
+  });
+}
+
+/** Creates an element that represents a message, including its delete button. */
+function createMessageElement(message) {
+  const messageElement = document.createElement('li');
+  messageElement.className = 'message';
+
+  const titleElement = document.createElement('span');
+  titleElement.innerText = message.title;
+/*
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteMessage(message);
+
+  });
+*/
+  messageElement.appendChild(titleElement);
+  return messageElement;
+}
+

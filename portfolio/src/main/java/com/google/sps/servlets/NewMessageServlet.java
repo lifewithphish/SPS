@@ -14,19 +14,31 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+/** Servlet responsible for creating new messages. */
+@WebServlet("/new-message")
+public class NewMessageServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String title = request.getParameter("title");
+    long timestamp = System.currentTimeMillis();
+
+    Entity messageEntity = new Entity("Message");
+    messageEntity.setProperty("title", title);
+    messageEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(messageEntity);
+
+    response.sendRedirect("/index.html");
   }
 }
