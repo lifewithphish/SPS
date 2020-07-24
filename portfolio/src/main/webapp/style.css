@@ -66,6 +66,26 @@ td{
 #greeting-container {
   margin-top: 20px;
 }
+#login-message{
+    padding-bottom: 10px;
+    border: thin solid black;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 98%;
+    background-color:azure;
+    text-align: center;
+}
+#login-stats-container {
+  padding-bottom: 10px;
+    border: thin solid black;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 98%;
+    background-color:azure;
+    text-align: center;
+}
 
 /* text issues */
 #text{
@@ -79,7 +99,13 @@ td{
     text-align: center;
 }
 
-
+#link{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 98%;
+    text-align: center;
+}
 /* Gallery code : adapted from
  https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp */
 

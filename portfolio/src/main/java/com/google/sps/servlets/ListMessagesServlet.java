@@ -29,6 +29,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet responsible for listing messages. */
 @WebServlet("/list-messages")
@@ -40,6 +42,7 @@ public class ListMessagesServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
+    UserService userService = UserServiceFactory.getUserService();
 
     List<Message> messages = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
@@ -52,8 +55,7 @@ public class ListMessagesServlet extends HttpServlet {
     }
 
     Gson gson = new Gson();
-
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(messages));
-  }
+  }//doGet
 }

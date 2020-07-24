@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload="loadMessages()">
+  <body onload="getLoginStatus()">
     <div id="banner">
         <h1>Hello World!</h1>
         <div id="banner-content">Cirque de Towers, Wyoming</div>
@@ -113,6 +113,9 @@
                     <button>Submit</button>
                 </form>
                 <ul id="message-list"></ul>
+                <div id="login-message"></div>
+                <ul id="login-stats-container"></ul>
+                <div id="link"></div>
             </td>       
         </tr>
         <tr>
