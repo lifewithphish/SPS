@@ -22,19 +22,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet responsible for creating new messages. */
 @WebServlet("/new-message")
 public class NewMessageServlet extends HttpServlet {
+UserService userService = UserServiceFactory.getUserService();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      
+    String userEmail = userService.getCurrentUser().getEmail();
     String title = request.getParameter("title");
     long timestamp = System.currentTimeMillis();
 
     Entity messageEntity = new Entity("Message");
     messageEntity.setProperty("title", title);
     messageEntity.setProperty("timestamp", timestamp);
+    messageEntity.setProperty("userEmail", userEmail);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(messageEntity);

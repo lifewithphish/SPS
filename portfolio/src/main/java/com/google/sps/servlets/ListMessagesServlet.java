@@ -31,6 +31,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet responsible for listing messages. */
 @WebServlet("/list-messages")
@@ -49,8 +51,9 @@ public class ListMessagesServlet extends HttpServlet {
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("title");
       long timestamp = (long) entity.getProperty("timestamp");
+      String userEmail = (String) entity.getProperty("userEmail");
 
-      Message message = new Message(id, title, timestamp);
+      Message message = new Message(id, title, timestamp, userEmail);
       messages.add(message);
     }
 

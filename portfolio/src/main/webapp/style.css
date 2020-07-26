@@ -66,16 +66,7 @@ td{
 #greeting-container {
   margin-top: 20px;
 }
-#login-message{
-    padding-bottom: 10px;
-    border: thin solid black;
-    display: flex;
-    margin: 10px;
-    padding: 10px;
-    width: 98%;
-    background-color:azure;
-    text-align: center;
-}
+
 #login-stats-container {
   padding-bottom: 10px;
     border: thin solid black;

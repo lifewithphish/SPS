@@ -35,6 +35,7 @@ public class LoginStatusServlet extends HttpServlet {
 
     //get the login status
     boolean loginResult = userService.isUserLoggedIn();
+    String loginEmail = userService.getCurrentUser().getEmail();
 
     /** converting to an int for easy passing of value
      * 1 is for logged in
@@ -45,22 +46,12 @@ public class LoginStatusServlet extends HttpServlet {
         intLoginResult = 1; 
 
     // Convert the login status to JSON
-    LoginStatus loginStatus = new LoginStatus(intLoginResult);
+    LoginStatus loginStatus = new LoginStatus(intLoginResult, loginEmail);
     String json = new Gson().toJson(loginStatus);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
-  }
-
-  /**
-   * Another option, manual concatonation to create the JSON
-   */
-  private String convertToJson(LoginStatus loginStatus) {
-    String json = "{";
-    json += "\"intLoginStatus\": ";
-    json += loginStatus.getIntLoginResult();
-    json += "}";
-    return json;
-  }//convertTOJson
+    
+  }//doGet
 }//LoginStatusServlet

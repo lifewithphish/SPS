@@ -22,9 +22,12 @@ function getLoginStatus() {
   fetch('/loginstatus').then(response => response.json()).then((loginDecision) => {
     // stats is an object, not a string, so we have to reference its fields to create HTML content
 
-    //alert(loginDecision);// this displays Object object so it's definietly an object
-    //alert(loginDecision.intLoginStatus); //this displays "undefined" so the value is not being read 
-                                            // despite being visible on the /loginstatus servlet
+    if(loginDecision.intLoginResult == 1)
+    {
+        loadMessages();
+        document.getElementById("login-stats-container").innerHTML="Good to see you, " +
+         loginDecision.loginEmail +"!";
+    }
   });
 }
 
@@ -45,9 +48,9 @@ function createMessageElement(message) {
   messageElement.className = 'message';
 
   const titleElement = document.createElement('span');
-  titleElement.innerText = message.title;
+  //titleElement.innerText = message.title;
+  titleElement.innerText ="\"" + message.title + "\"" + " :" + message.userEmail;
 
   messageElement.appendChild(titleElement);
   return messageElement;
 }
-

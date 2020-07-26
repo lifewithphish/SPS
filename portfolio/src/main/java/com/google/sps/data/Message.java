@@ -20,10 +20,12 @@ public final class Message {
   private final long id;
   private final String title;
   private final long timestamp;
+  private String userEmail;
 
-  public Message(long id, String title, long timestamp) {
+  public Message(long id, String title, long timestamp, String userEmail) {
     this.id = id;
     this.title = title;
     this.timestamp = timestamp;
+    this.userEmail = userEmail;
   }
 }
