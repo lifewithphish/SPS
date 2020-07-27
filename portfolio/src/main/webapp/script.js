@@ -1,28 +1,56 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-/**
- * Adds a random greeting to the page.
+/*This set of functions add a caption to the photo when you mouse over it
+* I adapted this function from w3schools: 
+* https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp
+* I referenced their div col/row method for laying out the photos
+* and then added my own JavaScript
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function showText(text){
+    document.getElementById("text").innerHTML=text;
+}
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+function hide(){
+    document.getElementById("text").innerHTML="";
+}
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+/* Function to fetch the int relating to login status from servlet
+* then either displays the messages if you are logged in or 
+* displays a link that redirects to my /login servlet
+*/
+
+// included for testing purposes are several alerts and what they indicate
+function getLoginStatus() {
+  fetch('/loginstatus').then(response => response.json()).then((loginDecision) => {
+    // stats is an object, not a string, so we have to reference its fields to create HTML content
+
+    if(loginDecision.intLoginResult == 1)
+    {
+        loadMessages();
+        document.getElementById("login-stats-container").innerHTML="Good to see you, " +
+         loginDecision.loginEmail +"!";
+    }
+  });
+}
+
+/* This function loads the messages from my /list-messages servlet */
+function loadMessages() {
+    fetch('/list-messages').then(response => response.json()).then((messages) => {
+        const messageListElement = document.getElementById('message-list');
+            messages.forEach((message) => {
+                messageListElement.appendChild(createMessageElement(message)); 
+            })
+        });
+}//loadMessages
+
+
+/** Creates an element that represents a message */
+function createMessageElement(message) {
+  const messageElement = document.createElement('li');
+  messageElement.className = 'message';
+
+  const titleElement = document.createElement('span');
+  //titleElement.innerText = message.title;
+  titleElement.innerText ="\"" + message.title + "\"" + " :" + message.userEmail;
+
+  messageElement.appendChild(titleElement);
+  return messageElement;
 }
